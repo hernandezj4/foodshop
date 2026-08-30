@@ -6,20 +6,35 @@ $path = rtrim($path, '/');
 $root = __DIR__;
 $public = $root . '/public';
 
-$direct = $public . $path;
-
 if ($path === '' || $path === '/') {
     require_once $public . '/index.php';
     exit;
 }
 
-if (is_file($direct)) {
-    $ext = pathinfo($direct, PATHINFO_EXTENSION);
-    if ($ext === 'php') {
-        chdir(dirname($direct));
-        require_once $direct;
-        exit;
-    }
+$rootFile = $root . $path;
+if (is_file($rootFile . '.php')) {
+    chdir(dirname($rootFile));
+    require_once $rootFile . '.php';
+    exit;
+}
+if (is_dir($rootFile)) {
+    $idx = rtrim($rootFile, '/') . '/index.php';
+    if (is_file($idx)) { chdir(dirname($idx)); require_once $idx; exit; }
+}
+
+$publicFile = $public . $path;
+if (is_file($publicFile . '.php')) {
+    chdir(dirname($publicFile));
+    require_once $publicFile . '.php';
+    exit;
+}
+if (is_dir($publicFile)) {
+    $idx = rtrim($publicFile, '/') . '/index.php';
+    if (is_file($idx)) { chdir(dirname($idx)); require_once $idx; exit; }
+}
+
+if (is_file($publicFile)) {
+    $ext = pathinfo($publicFile, PATHINFO_EXTENSION);
     $mimeTypes = [
         'css'  => 'text/css',
         'js'   => 'application/javascript',
@@ -35,25 +50,9 @@ if (is_file($direct)) {
         'ttf'  => 'font/ttf',
         'json' => 'application/json',
     ];
-    header('Content-Type: ' . ($mimeTypes[$ext] ?? mime_content_type($direct) ?: 'application/octet-stream'));
-    header('Content-Length: ' . filesize($direct));
-    readfile($direct);
-    exit;
-}
-
-if (is_dir($direct)) {
-    $idx = rtrim($direct, '/') . '/index.php';
-    if (is_file($idx)) { chdir(dirname($idx)); require_once $idx; exit; }
-}
-
-$rootDirect = $root . $path;
-if (is_dir($rootDirect)) {
-    $idx = rtrim($rootDirect, '/') . '/index.php';
-    if (is_file($idx)) { chdir(dirname($idx)); require_once $idx; exit; }
-}
-if (is_file($rootDirect . '.php')) {
-    chdir(dirname($rootDirect));
-    require_once $rootDirect . '.php';
+    header('Content-Type: ' . ($mimeTypes[$ext] ?? mime_content_type($publicFile) ?: 'application/octet-stream'));
+    header('Content-Length: ' . filesize($publicFile));
+    readfile($publicFile);
     exit;
 }
 

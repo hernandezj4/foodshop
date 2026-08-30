@@ -8,7 +8,10 @@ COPY . /var/www/html/
 
 WORKDIR /var/www/html
 
-RUN mkdir -p logs && chmod -R 755 public/uploads
+RUN rm -rf public/customer public/admin \
+    && ln -s ../customer public/customer \
+    && ln -s ../admin public/admin \
+    && mkdir -p logs && chmod -R 755 public/uploads
 
 EXPOSE 8000
 
