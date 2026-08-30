@@ -4,8 +4,8 @@ $path = parse_url($uri, PHP_URL_PATH);
 $path = rtrim($path, '/');
 
 $root = __DIR__;
-
 $public = $root . '/public';
+
 $direct = $public . $path;
 
 if ($path === '' || $path === '/') {
@@ -14,12 +14,31 @@ if ($path === '' || $path === '/') {
 }
 
 if (is_file($direct)) {
-    if (pathinfo($direct, PATHINFO_EXTENSION) === 'php') {
+    $ext = pathinfo($direct, PATHINFO_EXTENSION);
+    if ($ext === 'php') {
         chdir(dirname($direct));
         require_once $direct;
         exit;
     }
-    return false;
+    $mimeTypes = [
+        'css'  => 'text/css',
+        'js'   => 'application/javascript',
+        'png'  => 'image/png',
+        'jpg'  => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'gif'  => 'image/gif',
+        'svg'  => 'image/svg+xml',
+        'ico'  => 'image/x-icon',
+        'webp' => 'image/webp',
+        'woff' => 'font/woff',
+        'woff2'=> 'font/woff2',
+        'ttf'  => 'font/ttf',
+        'json' => 'application/json',
+    ];
+    header('Content-Type: ' . ($mimeTypes[$ext] ?? mime_content_type($direct) ?: 'application/octet-stream'));
+    header('Content-Length: ' . filesize($direct));
+    readfile($direct);
+    exit;
 }
 
 if (is_dir($direct)) {
