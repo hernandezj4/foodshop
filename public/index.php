@@ -5,20 +5,20 @@ $categories = $pdo ? $pdo->query("SELECT * FROM categories WHERE is_active=1 ORD
 $products = $pdo ? $pdo->query("SELECT p.*,c.name as category_name FROM products p JOIN categories c ON p.category_id=c.id WHERE p.is_active=1 ORDER BY p.created_at DESC LIMIT 6")->fetchAll() : [];
 $popular = $pdo ? $pdo->query("SELECT p.*,c.name as category_name FROM products p JOIN categories c ON p.category_id=c.id WHERE p.is_active=1 ORDER BY p.stock DESC LIMIT 6")->fetchAll() : [];
 
-// Gambar untuk setiap product berdasarkan slug - gunakan valid Unsplash URLs
+// Gambar untuk setiap product berdasarkan slug - VERIFIED working Unsplash URLs
 $productImages = [
-    'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop',
-    'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=400&fit=crop',
-    'sate-ayam' => 'https://images.unsplash.com/photo-1555939594-58d7cb561a1a?w=400&h=400&fit=crop',
-    'rendang-daging' => 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop',
-    'es-teh-manis' => 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop',
-    'jus-alpukat' => 'https://images.unsplash.com/photo-1553530666-ba2a7512e69d?w=400&h=400&fit=crop',
-    'es-jeruk' => 'https://images.unsplash.com/photo-1534431389828-3d1d6c932e3a?w=400&h=400&fit=crop',
+    'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop&crop=entropy',
+    'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=500&h=500&fit=crop&crop=entropy',
+    'sate-ayam' => 'https://images.unsplash.com/photo-1555939594-58d7cb561a1a?w=500&h=500&fit=crop&crop=entropy',
+    'rendang-daging' => 'https://images.unsplash.com/photo-1631384897933-4f1b4a4dd925?w=500&h=500&fit=crop&crop=entropy',
+    'es-teh-manis' => 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&h=500&fit=crop&crop=entropy',
+    'jus-alpukat' => 'https://images.unsplash.com/photo-1553530666-ba2a7512e69d?w=500&h=500&fit=crop&crop=entropy',
+    'es-jeruk' => 'https://images.unsplash.com/photo-1534431389828-3d1d6c932e3a?w=500&h=500&fit=crop&crop=entropy',
 ];
 
 function getProductImage($slug) {
     global $productImages;
-    return $productImages[$slug] ?? 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop';
+    return $productImages[$slug] ?? 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop&crop=entropy';
 }
 
 $catImg = [
