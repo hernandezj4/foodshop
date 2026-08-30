@@ -76,7 +76,7 @@ ul{list-style:none}
 .badge-red{background:var(--red)}
 .badge-orange{background:#f57c00}
 .badge-green{background:#38a169}
-.product-img{width:100%;aspect-ratio:1;object-fit:contain}
+.product-img{width:100%;aspect-ratio:1;object-fit:cover;object-position:center}
 .wishlist{position:absolute;top:10px;right:10px;width:30px;height:30px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:var(--shadow);cursor:pointer}
 .product-body{padding:12px}
 .product-name{font-size:13px;font-weight:700;margin-bottom:2px}
