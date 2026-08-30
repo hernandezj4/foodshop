@@ -5,7 +5,7 @@ $categories = $pdo ? $pdo->query("SELECT * FROM categories WHERE is_active=1 ORD
 $products = $pdo ? $pdo->query("SELECT p.*,c.name as category_name FROM products p JOIN categories c ON p.category_id=c.id WHERE p.is_active=1 ORDER BY p.created_at DESC LIMIT 6")->fetchAll() : [];
 $popular = $pdo ? $pdo->query("SELECT p.*,c.name as category_name FROM products p JOIN categories c ON p.category_id=c.id WHERE p.is_active=1 ORDER BY p.stock DESC LIMIT 6")->fetchAll() : [];
 
-// Gambar untuk setiap product berdasarkan slug
+// Gambar untuk setiap product berdasarkan slug - gunakan valid Unsplash URLs
 $productImages = [
     'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop',
     'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=400&fit=crop',
