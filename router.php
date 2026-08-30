@@ -28,6 +28,11 @@ if (is_file($publicFile . '.php')) {
     require_once $publicFile . '.php';
     exit;
 }
+if (is_file($publicFile) && pathinfo($publicFile, PATHINFO_EXTENSION) === 'php') {
+    chdir(dirname($publicFile));
+    require_once $publicFile;
+    exit;
+}
 if (is_dir($publicFile)) {
     $idx = rtrim($publicFile, '/') . '/index.php';
     if (is_file($idx)) { chdir(dirname($idx)); require_once $idx; exit; }
