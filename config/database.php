@@ -1,9 +1,9 @@
 <?php
-$host = 'mysql.railway.internal';
-$dbname = 'railway';
-$username = 'root';
-$password = 'dAqtiJKLwNSNlqsUlZCokdRstsvblczs';
-$port = '3306';
+$host = getenv('DB_HOST') ?: getenv('MYSQLHOST') ?: 'mysql.railway.internal';
+$dbname = getenv('DB_NAME') ?: getenv('MYSQLDATABASE') ?: 'railway';
+$username = getenv('DB_USER') ?: getenv('MYSQLUSER') ?: 'root';
+$password = getenv('DB_PASS') ?: getenv('MYSQLPASSWORD') ?: 'dAqtiJKLwNSNlqsUlZCokdRstsvblczs';
+$port = getenv('DB_PORT') ?: getenv('MYSQLPORT') ?: '3306';
 
 $pdo = null;
 
@@ -58,17 +58,17 @@ try {
         ('Dessert', 'dessert', 'Pemanis penutup')");
     }
     
-    // Seed products if empty
+    // Seed products if empty - with 7 items
     $prodCount = $pdo->query("SELECT COUNT(*) as cnt FROM products")->fetch()['cnt'];
     if ($prodCount == 0) {
         $pdo->exec("INSERT INTO products (category_id, name, slug, description, price, stock, is_active) VALUES 
-        (1, 'Nasi Goreng Spesial', 'nasi-goreng-spesial', 'Nasi goreng dengan bumbu spesial', 25000, 50, 1),
-        (1, 'Ayam Bakar', 'ayam-bakar', 'Ayam bakar madu lezat', 35000, 30, 1),
-        (2, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin segar', 8000, 100, 1),
-        (2, 'Jus Alpukat', 'jus-alpukat', 'Jus alpukat segar', 15000, 50, 1),
-        (3, 'Keripik Kentang', 'keripik-kentang', 'Keripik renyah', 10000, 80, 1),
-        (4, 'Pudding Coklat', 'pudding-coklat', 'Pudding lembut', 12000, 40, 1),
-        (4, 'Es Krim Vanila', 'es-krim-vanila', 'Es krim vanila', 10000, 50, 1)");
+        (1, 'Nasi Goreng Kampung', 'nasi-goreng-kampung', 'Nasi goreng dengan bumbu khas kampung, telur, dan sayuran', 22000, 50, 1),
+        (1, 'Mie Ayam Spesial', 'mie-ayam-spesial', 'Mie ayam dengan kuah gurih dan daging ayam pilihan', 18000, 40, 1),
+        (2, 'Es Jeruk Segar', 'es-jeruk-segar', 'Jeruk segar peras langsung dengan gula aren', 10000, 100, 1),
+        (2, 'Kopi Susu Kental', 'kopi-susu-kental', 'Kopi premium dengan susu kental manis', 12000, 60, 1),
+        (3, 'Tahu Goreng Crispy', 'tahu-goreng-crispy', 'Tahu goreng renyah dengan sambal pedas', 8000, 80, 1),
+        (4, 'Martabak Manis Coklat', 'martabak-manis-coklat', 'Martabak tebal dengan coklat lumer dan keju', 15000, 30, 1),
+        (4, 'Pisang Goreng Madu', 'pisang-goreng-madu', 'Pisang goreng dengan sirup madu dan keju', 12000, 50, 1)");
     }
     
     // Seed admin if empty
