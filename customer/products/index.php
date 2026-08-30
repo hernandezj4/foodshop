@@ -31,18 +31,18 @@ $sortLabels = ['newest'=>'Newest','price-low'=>'Price: Low','price-high'=>'Price
 
 // Gambar untuk setiap product berdasarkan slug - VERIFIED working Unsplash URLs
 $productImages = [
-    'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop&crop=entropy',
-    'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=500&h=500&fit=crop&crop=entropy',
-    'sate-ayam' => 'https://images.unsplash.com/photo-1555939594-58d7cb561a1a?w=500&h=500&fit=crop&crop=entropy',
-    'rendang-daging' => 'https://images.unsplash.com/photo-1631384897933-4f1b4a4dd925?w=500&h=500&fit=crop&crop=entropy',
-    'es-teh-manis' => 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&h=500&fit=crop&crop=entropy',
-    'jus-alpukat' => 'https://images.unsplash.com/photo-1553530666-ba2a7512e69d?w=500&h=500&fit=crop&crop=entropy',
-    'es-jeruk' => 'https://images.unsplash.com/photo-1534431389828-3d1d6c932e3a?w=500&h=500&fit=crop&crop=entropy',
+    'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop',
+    'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=500&h=500&fit=crop',
+    'sate-ayam' => 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=500&h=500&fit=crop',
+    'rendang-daging' => 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&h=500&fit=crop',
+    'es-teh-manis' => 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&h=500&fit=crop',
+    'jus-alpukat' => 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&h=500&fit=crop',
+    'es-jeruk' => 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500&h=500&fit=crop',
 ];
 
 function getProductImage($slug) {
     global $productImages;
-    return $productImages[$slug] ?? 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop&crop=entropy';
+    return $productImages[$slug] ?? 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop';
 }
 
 $food = [
