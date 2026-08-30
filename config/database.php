@@ -1,9 +1,10 @@
 <?php
-$host = getenv('DB_HOST') ?: getenv('MYSQLHOST') ?: 'mysql.railway.internal';
-$dbname = getenv('DB_NAME') ?: getenv('MYSQLDATABASE') ?: 'railway';
-$username = getenv('DB_USER') ?: getenv('MYSQLUSER') ?: 'root';
-$password = getenv('DB_PASS') ?: getenv('MYSQLPASSWORD') ?: 'dAqtiJKLwNSNlqsUkdRStSvblczS';
-$port = getenv('DB_PORT') ?: getenv('MYSQLPORT') ?: '3306';
+// Read from actual env vars - Railway sets these automatically
+$host = $_ENV['MYSQLHOST'] ?? getenv('MYSQLHOST') ?? 'mysql.railway.internal';
+$port = $_ENV['MYSQLPORT'] ?? getenv('MYSQLPORT') ?? '3306';
+$dbname = $_ENV['MYSQLDATABASE'] ?? getenv('MYSQLDATABASE') ?? 'railway';
+$username = $_ENV['MYSQLUSER'] ?? getenv('MYSQLUSER') ?? 'root';
+$password = $_ENV['MYSQLPASSWORD'] ?? getenv('MYSQLPASSWORD') ?? '';
 
 $pdo = null;
 
@@ -58,7 +59,7 @@ try {
         ('Dessert', 'dessert', 'Pemanis penutup')");
     }
     
-    // Seed products if empty - with 7 items
+    // Seed products if empty
     $prodCount = $pdo->query("SELECT COUNT(*) as cnt FROM products")->fetch()['cnt'];
     if ($prodCount == 0) {
         $pdo->exec("INSERT INTO products (category_id, name, slug, description, price, stock, is_active) VALUES 
