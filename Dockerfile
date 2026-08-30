@@ -12,4 +12,4 @@ RUN mkdir -p logs && chmod -R 755 public/uploads
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} router.php 2>&1"]
+CMD ["sh", "-c", "php -d display_errors=1 -d error_reporting=E_ALL -S 0.0.0.0:${PORT:-8000} router.php 2>&1"]
