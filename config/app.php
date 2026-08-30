@@ -1,8 +1,13 @@
 <?php
-$isRailway = !empty($_SERVER['RAILWAY_STATIC_URL']) || !empty($_ENV['RAILWAY_PUBLIC_DOMAIN']);
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/logs/error.log');
+
+$isRailway = getenv('RAILWAY_PUBLIC_DOMAIN') !== false;
 $appUrl = $isRailway
-    ? 'https://' . ($_ENV['RAILWAY_PUBLIC_DOMAIN'] ?? 'cheerful-forgiveness-production.up.railway.app')
-    : ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST']);
+    ? 'https://' . getenv('RAILWAY_PUBLIC_DOMAIN')
+    : ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost'));
 define('APP_NAME', 'FoodShop');
 define('APP_URL', rtrim($appUrl, '/'));
 define('UPLOAD_PATH', __DIR__ . '/../public/uploads/');

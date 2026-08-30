@@ -8,9 +8,8 @@ COPY . /var/www/html/
 
 WORKDIR /var/www/html
 
-RUN chmod -R 755 /var/www/html/public/uploads
+RUN mkdir -p logs && chmod -R 755 public/uploads
 
 EXPOSE 8000
 
-ENV PORT=8000
-CMD ["sh", "-c", "php -S 0.0.0.0:$PORT router.php"]
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} router.php 2>&1"]
