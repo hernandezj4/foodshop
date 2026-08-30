@@ -18,11 +18,14 @@ switch ($sort) {
     default: $sql .= " ORDER BY p.created_at DESC";
 }
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$products = $stmt->fetchAll();
-
-$categories = $pdo->query("SELECT * FROM categories WHERE is_active=1 ORDER BY name")->fetchAll();
+$products = [];
+$categories = [];
+if ($pdo) {
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+    $products = $stmt->fetchAll();
+    $categories = $pdo->query("SELECT * FROM categories WHERE is_active=1 ORDER BY name")->fetchAll();
+}
 $wishlist = $_SESSION['wishlist'] ?? [];
 
 $sortLabels = ['newest'=>'Newest','price-low'=>'Price: Low','price-high'=>'Price: High','name-az'=>'Name A-Z'];
