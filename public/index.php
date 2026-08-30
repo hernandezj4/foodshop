@@ -5,14 +5,21 @@ $categories = $pdo ? $pdo->query("SELECT * FROM categories WHERE is_active=1 ORD
 $products = $pdo ? $pdo->query("SELECT p.*,c.name as category_name FROM products p JOIN categories c ON p.category_id=c.id WHERE p.is_active=1 ORDER BY p.created_at DESC LIMIT 6")->fetchAll() : [];
 $popular = $pdo ? $pdo->query("SELECT p.*,c.name as category_name FROM products p JOIN categories c ON p.category_id=c.id WHERE p.is_active=1 ORDER BY p.stock DESC LIMIT 6")->fetchAll() : [];
 
-$food = [
-    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&h=400&fit=crop',
+// Gambar untuk setiap product berdasarkan slug
+$productImages = [
+    'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop',
+    'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=400&fit=crop',
+    'sate-ayam' => 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400&h=400&fit=crop',
+    'rendang-daging' => 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=400&h=400&fit=crop',
+    'es-teh-manis' => 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop',
+    'jus-alpukat' => 'https://images.unsplash.com/photo-1553530666-ba2a7512e69d?w=400&h=400&fit=crop',
+    'es-jeruk' => 'https://images.unsplash.com/photo-1534431389828-3d1d6c932e3a?w=400&h=400&fit=crop',
 ];
+
+function getProductImage($slug) {
+    global $productImages;
+    return $productImages[$slug] ?? 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop';
+}
 
 $catImg = [
     'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=100&h=100&fit=crop',
@@ -75,13 +82,13 @@ customerHeader();
         <a href="<?= APP_URL ?>/customer/products/" class="section-link">View All →</a>
     </div>
     <div class="product-grid">
-        <?php foreach ($products as $i => $p): ?>
-        <div class="product-card <?= $p['stock']<=0?'oos':'' ?>">
-            <a href="<?= APP_URL ?>/customer/products/detail.php?slug=<?= $p['slug'] ?>" class="product-link">
-            <div class="product-img-wrap">
-                <span class="product-badge <?= ['badge-red','badge-orange','badge-green'][$i%3] ?>"><?= ['BESTSELLER','POPULAR','SAVE 15%'][$i%3] ?></span>
-                <button class="js-wishlist" data-id="<?= $p['id'] ?>" type="button"></button>
-                <img class="product-img" src="<?= $food[$i%count($food)] ?>" alt="<?= sanitize($p['name']) ?>" loading="lazy">
+         <?php foreach ($products as $i => $p): ?>
+         <div class="product-card <?= $p['stock']<=0?'oos':'' ?>">
+             <a href="<?= APP_URL ?>/customer/products/detail.php?slug=<?= $p['slug'] ?>" class="product-link">
+             <div class="product-img-wrap">
+                 <span class="product-badge <?= ['badge-red','badge-orange','badge-green'][$i%3] ?>"><?= ['BESTSELLER','POPULAR','SAVE 15%'][$i%3] ?></span>
+                 <button class="js-wishlist" data-id="<?= $p['id'] ?>" type="button"></button>
+                 <img class="product-img" src="<?= getProductImage($p['slug']) ?>" alt="<?= sanitize($p['name']) ?>" loading="lazy">
             </div>
             </a>
             <div class="product-body">
@@ -131,12 +138,12 @@ customerHeader();
         <a href="<?= APP_URL ?>/customer/products/" class="section-link">View All →</a>
     </div>
     <div class="product-grid">
-        <?php foreach ($popular as $i => $p): ?>
-        <div class="product-card <?= $p['stock']<=0?'oos':'' ?>">
-            <a href="<?= APP_URL ?>/customer/products/detail.php?slug=<?= $p['slug'] ?>" class="product-link">
-            <div class="product-img-wrap">
-                <button class="js-wishlist" data-id="<?= $p['id'] ?>" type="button"></button>
-                <img class="product-img" src="<?= $food[($i+3)%count($food)] ?>" alt="<?= sanitize($p['name']) ?>" loading="lazy">
+         <?php foreach ($popular as $i => $p): ?>
+         <div class="product-card <?= $p['stock']<=0?'oos':'' ?>">
+             <a href="<?= APP_URL ?>/customer/products/detail.php?slug=<?= $p['slug'] ?>" class="product-link">
+             <div class="product-img-wrap">
+                 <button class="js-wishlist" data-id="<?= $p['id'] ?>" type="button"></button>
+                 <img class="product-img" src="<?= getProductImage($p['slug']) ?>" alt="<?= sanitize($p['name']) ?>" loading="lazy">
             </div>
             </a>
             <div class="product-body">
