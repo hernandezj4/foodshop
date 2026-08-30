@@ -1,23 +1,26 @@
 <?php
 // Read from actual env vars - Railway sets these automatically
-// Treat empty strings as not set
-$host = ($_ENV['MYSQLHOST'] ?? null) ?: (getenv('MYSQLHOST') ?: null);
-$port = ($_ENV['MYSQLPORT'] ?? null) ?: (getenv('MYSQLPORT') ?: null) ?: '3306';
-$dbname = ($_ENV['MYSQLDATABASE'] ?? null) ?: (getenv('MYSQLDATABASE') ?: null);
-$username = ($_ENV['MYSQLUSER'] ?? null) ?: (getenv('MYSQLUSER') ?: null);
-$password = ($_ENV['MYSQLPASSWORD'] ?? null) ?: (getenv('MYSQLPASSWORD') ?: null);
+$host = $_ENV['MYSQLHOST'] ?? getenv('MYSQLHOST');
+$port = $_ENV['MYSQLPORT'] ?? getenv('MYSQLPORT');
+$dbname = $_ENV['MYSQLDATABASE'] ?? getenv('MYSQLDATABASE');
+$username = $_ENV['MYSQLUSER'] ?? getenv('MYSQLUSER');
+$password = $_ENV['MYSQLPASSWORD'] ?? getenv('MYSQLPASSWORD');
 
-// If running on Railway (check if not localhost), use Railway MySQL defaults
-$isRailway = (php_uname('s') === 'Linux' && !$host);
+// Detect if running on Railway
+$isRailway = (php_uname('s') === 'Linux') && (getenv('RAILWAY_ENVIRONMENT_NAME') !== false);
+
 if ($isRailway) {
+    // On Railway - use Railway MySQL service defaults
     $host = $host ?: 'mysql.railway.internal';
+    $port = $port ?: '3306';
     $dbname = $dbname ?: 'railway';
     $username = $username ?: 'root';
-    // DO NOT use hardcoded password - Railway MUST provide it via MYSQLPASSWORD
+    // Password MUST come from env var on Railway - if not set, connection will fail
     $password = $password ?: '';
 } else {
-    // Local development defaults
+    // Local development
     $host = $host ?: 'localhost';
+    $port = $port ?: '3306';
     $dbname = $dbname ?: 'foodshop';
     $username = $username ?: 'root';
     $password = $password ?: '';
