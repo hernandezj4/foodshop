@@ -13,7 +13,8 @@ if ($isRailway) {
     $host = $host ?: 'mysql.railway.internal';
     $dbname = $dbname ?: 'railway';
     $username = $username ?: 'root';
-    $password = $password ?: 'dAqtiJKLwNSNlqsUkdRStSvblczS';
+    // DO NOT use hardcoded password - Railway MUST provide it via MYSQLPASSWORD
+    $password = $password ?: '';
 } else {
     // Local development defaults
     $host = $host ?: 'localhost';
