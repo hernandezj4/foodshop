@@ -3,20 +3,21 @@ header('Content-Type: text/plain');
 
 echo "=== RAILWAY ENV VARS CHECK ===\n\n";
 
-$host = $_ENV['MYSQLHOST'] ?? getenv('MYSQLHOST') ?? 'NOT SET';
-$port = $_ENV['MYSQLPORT'] ?? getenv('MYSQLPORT') ?? 'NOT SET';
-$dbname = $_ENV['MYSQLDATABASE'] ?? getenv('MYSQLDATABASE') ?? 'NOT SET';
-$username = $_ENV['MYSQLUSER'] ?? getenv('MYSQLUSER') ?? 'NOT SET';
-$password = $_ENV['MYSQLPASSWORD'] ?? getenv('MYSQLPASSWORD') ?? 'NOT SET';
+// Use same logic as database.php
+$host = ($_ENV['MYSQLHOST'] ?? null) ?: (getenv('MYSQLHOST') ?: null) ?: 'mysql.railway.internal';
+$port = ($_ENV['MYSQLPORT'] ?? null) ?: (getenv('MYSQLPORT') ?: null) ?: '3306';
+$dbname = ($_ENV['MYSQLDATABASE'] ?? null) ?: (getenv('MYSQLDATABASE') ?: null) ?: 'railway';
+$username = ($_ENV['MYSQLUSER'] ?? null) ?: (getenv('MYSQLUSER') ?: null) ?: 'root';
+$password = ($_ENV['MYSQLPASSWORD'] ?? null) ?: (getenv('MYSQLPASSWORD') ?: null) ?: 'dAqtiJKLwNSNlqsUkdRStSvblczS';
 
 echo "MYSQLHOST: $host\n";
 echo "MYSQLPORT: $port\n";
 echo "MYSQLDATABASE: $dbname\n";
 echo "MYSQLUSER: $username\n";
-echo "MYSQLPASSWORD: " . (($password !== 'NOT SET') ? '***SET***' : 'NOT SET') . "\n\n";
+echo "MYSQLPASSWORD: " . (strlen($password) > 0 ? '***SET***' : 'NOT SET') . "\n\n";
 
-if ($host === 'NOT SET') {
-    echo "✗ ENV VARS NOT SET - Railway env vars tidak terdeteksi!\n";
+if (strlen($host) === 0) {
+    echo "✗ HOST NOT SET - Railway env vars tidak terdeteksi!\n";
     exit;
 }
 

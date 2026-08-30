@@ -1,10 +1,11 @@
 <?php
 // Read from actual env vars - Railway sets these automatically
-$host = $_ENV['MYSQLHOST'] ?? getenv('MYSQLHOST') ?? 'mysql.railway.internal';
-$port = $_ENV['MYSQLPORT'] ?? getenv('MYSQLPORT') ?? '3306';
-$dbname = $_ENV['MYSQLDATABASE'] ?? getenv('MYSQLDATABASE') ?? 'railway';
-$username = $_ENV['MYSQLUSER'] ?? getenv('MYSQLUSER') ?? 'root';
-$password = $_ENV['MYSQLPASSWORD'] ?? getenv('MYSQLPASSWORD') ?? '';
+// Treat empty strings as not set
+$host = ($_ENV['MYSQLHOST'] ?? null) ?: (getenv('MYSQLHOST') ?: null) ?: 'mysql.railway.internal';
+$port = ($_ENV['MYSQLPORT'] ?? null) ?: (getenv('MYSQLPORT') ?: null) ?: '3306';
+$dbname = ($_ENV['MYSQLDATABASE'] ?? null) ?: (getenv('MYSQLDATABASE') ?: null) ?: 'railway';
+$username = ($_ENV['MYSQLUSER'] ?? null) ?: (getenv('MYSQLUSER') ?: null) ?: 'root';
+$password = ($_ENV['MYSQLPASSWORD'] ?? null) ?: (getenv('MYSQLPASSWORD') ?: null) ?: 'dAqtiJKLwNSNlqsUkdRStSvblczS';
 
 $pdo = null;
 
