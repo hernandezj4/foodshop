@@ -5,12 +5,12 @@ $categories = $pdo ? $pdo->query("SELECT * FROM categories WHERE is_active=1 ORD
 $products = $pdo ? $pdo->query("SELECT p.*,c.name as category_name FROM products p JOIN categories c ON p.category_id=c.id WHERE p.is_active=1 ORDER BY p.created_at DESC LIMIT 6")->fetchAll() : [];
 $popular = $pdo ? $pdo->query("SELECT p.*,c.name as category_name FROM products p JOIN categories c ON p.category_id=c.id WHERE p.is_active=1 ORDER BY p.stock DESC LIMIT 6")->fetchAll() : [];
 
-// Gambar untuk setiap product - Verified working Unsplash URLs
+// Gambar untuk setiap product - Verified working Unsplash URLs yang match dengan product name
 $productImages = [
     'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop',
-    'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=500&h=500&fit=crop',
+    'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1580959375944-abd7e991f971?w=500&h=500&fit=crop',
     'sate-ayam' => 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=500&h=500&fit=crop',
-    'rendang-daging' => 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&h=500&fit=crop',
+    'rendang-daging' => 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=500&h=500&fit=crop',
     'es-teh-manis' => 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&h=500&fit=crop',
     'jus-alpukat' => 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&h=500&fit=crop',
     'es-jeruk' => 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500&h=500&fit=crop',
