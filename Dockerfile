@@ -12,4 +12,5 @@ RUN chmod -R 755 /var/www/html/public/uploads
 
 EXPOSE 8000
 
-CMD ["php", "-S", "0.0.0.0:8000", "router.php"]
+ENV PORT=8000
+CMD ["sh", "-c", "php -S 0.0.0.0:$PORT router.php"]
