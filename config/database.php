@@ -1,8 +1,8 @@
 <?php
-$host = getenv('DB_HOST') ?: getenv('MYSQLHOST') ?: 'localhost';
+$host = getenv('DB_HOST') ?: getenv('MYSQLHOST') ?: 'mysql.railway.internal';
 $dbname = getenv('DB_NAME') ?: getenv('MYSQLDATABASE') ?: 'railway';
 $username = getenv('DB_USER') ?: getenv('MYSQLUSER') ?: 'root';
-$password = getenv('DB_PASS') ?: getenv('MYSQLPASSWORD') ?: '';
+$password = getenv('DB_PASS') ?: getenv('MYSQLPASSWORD') ?: 'dAqtiJKLwNSNlqsUlZCokdRstsvblczs';
 $port = getenv('DB_PORT') ?: getenv('MYSQLPORT') ?: '3306';
 
 $pdo = null;
