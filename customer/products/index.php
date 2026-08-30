@@ -31,10 +31,10 @@ $sortLabels = ['newest'=>'Newest','price-low'=>'Price: Low','price-high'=>'Price
 
 // Gambar untuk setiap product berdasarkan slug
 $productImages = [
-    'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop',
-    'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=400&fit=crop',
-    'sate-ayam' => 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400&h=400&fit=crop',
-    'rendang-daging' => 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=400&h=400&fit=crop',
+    'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1605045613556-b5eed9852393?w=400&h=400&fit=crop',
+    'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=400&fit=crop',
+    'sate-ayam' => 'https://images.unsplash.com/photo-1555939594-58d7cb561a1a?w=400&h=400&fit=crop',
+    'rendang-daging' => 'https://images.unsplash.com/photo-1609501676725-7186f017a4b0?w=400&h=400&fit=crop',
     'es-teh-manis' => 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop',
     'jus-alpukat' => 'https://images.unsplash.com/photo-1553530666-ba2a7512e69d?w=400&h=400&fit=crop',
     'es-jeruk' => 'https://images.unsplash.com/photo-1534431389828-3d1d6c932e3a?w=400&h=400&fit=crop',
