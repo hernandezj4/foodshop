@@ -1,18 +1,18 @@
 <?php
-$host = getenv('DB_HOST') ?: 'localhost';
-$dbname = getenv('DB_NAME') ?: 'foodshop';
-$username = getenv('DB_USER') ?: 'root';
-$password = getenv('DB_PASS') ?: '';
+$host = getenv('DB_HOST') ?: getenv('MYSQLHOST') ?: 'localhost';
+$dbname = getenv('DB_NAME') ?: getenv('MYSQLDATABASE') ?: 'railway';
+$username = getenv('DB_USER') ?: getenv('MYSQLUSER') ?: 'root';
+$password = getenv('DB_PASS') ?: getenv('MYSQLPASSWORD') ?: '';
+$port = getenv('DB_PORT') ?: getenv('MYSQLPORT') ?: '3306';
 
 $pdo = null;
 
-if ($host !== 'localhost' || $password !== '') {
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    } catch (PDOException $e) {
-        $pdo = null;
-    }
+try {
+    $dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4";
+    $pdo = new PDO($dsn, $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+} catch (PDOException $e) {
+    $pdo = null;
 }

@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../../includes/customer_layout.php';
-require_once __DIR__ . '/../../config/database.php';
 
 $search = $_GET['search'] ?? '';
 $category = $_GET['category'] ?? '';
