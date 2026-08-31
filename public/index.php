@@ -112,18 +112,18 @@ customerHeader();
 </div>
 
 <!-- Promo Banner -->
-<div class="promo-banner">
-    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&h=200&fit=crop" alt="Promo">
+<div class="promo-banner" style="cursor:pointer" onclick="window.open('https://wa.me/<?= WA_NUMBER ?>?text=Halo%20FoodShop%2C%20saya%20mau%20pesan%20makanan','_blank')">
+    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&h=200&fit=crop" alt="Order">
     <div class="promo-text">
-        <div class="promo-tag">Exclusive Offer</div>
-        <h3>Up to 30% OFF</h3>
-        <p>On selected combos</p>
-        <a href="<?= APP_URL ?>/customer/products/" class="promo-btn">Order Now →</a>
+        <div class="promo-tag">Order via WhatsApp</div>
+        <h3>Pesan Mudah & Cepat</h3>
+        <p>Chat langsung untuk pesan dan tanya-tanya</p>
+        <span class="promo-btn">💬 Chat Sekarang →</span>
     </div>
     <div class="promo-discount">
-        <small>UP TO</small>
-        <span>30%</span>
-        <small>OFF</small>
+        <small>PESAN</small>
+        <span style="font-size:1.2rem">💬</span>
+        <small>SEKARANG</small>
     </div>
 </div>
 

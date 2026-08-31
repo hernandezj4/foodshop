@@ -52,8 +52,8 @@ function customerHeader() {
         <span class="badge cart-badge" style="<?= $cartCount>0?'':'display:none' ?>"><?= $cartCount ?></span>
     </a>
     <div class="desk-nav-bottom">
-        <a href="<?= APP_URL ?>/admin/auth/login.php">
-            <span class="icon">👤</span> Admin Login
+        <a href="https://wa.me/<?= WA_NUMBER ?>?text=Halo%20FoodShop%2C%20saya%20mau%20tanya-tanya" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 16px;color:#25D366;font-size:13px;border-left:3px solid transparent;text-decoration:none">
+            <span class="icon">💬</span> Chat WhatsApp
         </a>
     </div>
 </nav>
@@ -115,9 +115,9 @@ function customerFooter() {
         <span class="icon">❤️</span>
         <span class="label">Wishlist</span>
     </a>
-    <a href="<?= APP_URL ?>/admin/auth/login.php" class="nav-item">
-        <span class="icon">👤</span>
-        <span class="label">Profile</span>
+    <a href="https://wa.me/<?= WA_NUMBER ?>?text=Halo%20FoodShop%2C%20saya%20mau%20pesan%20makanan" target="_blank" class="nav-item">
+        <span class="icon">💬</span>
+        <span class="label">WhatsApp</span>
     </a>
 </nav>
 
@@ -132,9 +132,9 @@ function customerFooter() {
             <div class="desk-footer-col">
                 <h4>Quick Links</h4>
                 <a href="<?= APP_URL ?>">Home</a>
-                <a href="<?= APP_URL ?>/customer/products/">Shop</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact</a>
+                <a href="<?= APP_URL ?>/customer/products/">Menu</a>
+                <a href="<?= APP_URL ?>/customer/wishlist/">Wishlist</a>
+                <a href="https://wa.me/<?= WA_NUMBER ?>" target="_blank">Chat WhatsApp</a>
             </div>
             <div class="desk-footer-col">
                 <h4>Categories</h4>
@@ -158,6 +158,9 @@ function customerFooter() {
 
 <!-- Mobile Footer Spacer -->
 <div class="footer-space"></div>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/<?= WA_NUMBER ?>?text=Halo%20FoodShop%2C%20saya%20mau%20pesan%20makanan" target="_blank" style="position:fixed;bottom:80px;right:16px;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;box-shadow:0 4px 12px rgba(37,211,102,.4);z-index:99;text-decoration:none;transition:.2s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</a>
 
 <script>var APP_URL='<?= APP_URL ?>';</script>
 <script src="<?= APP_URL ?>/js/app.js"></script>
