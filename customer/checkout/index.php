@@ -27,9 +27,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($note) { $wa .= "\xF0\x9F\x93\x8D Catatan: " . $note . "\n"; }
         $wa .= "\n\xE2\x9C\x85 Mohon dikonfirmasi ya Admin\n";
         $wa .= "Terima kasih \xF0\x9F\x99\x8F\xE2\x9D\xA4";
-        $waUrl = "https://wa.me/" . WA_NUMBER . "?text=" . urlencode($wa);
+        $orderNumber = 'FS-' . date('Ymd') . '-' . strtoupper(substr(uniqid(), -5));
+
+        $items_text = "";
+        foreach ($cart as $item) {
+            $sub = $item['price'] * $item['quantity'];
+            $items_text .= "  \xF0\x9F\x8D\xBD " . $item['name'] . " \xC3\x97 " . $item['quantity'] . " = Rp " . number_format($sub, 0, ',', '.') . "\n";
+        }
+        $wa = "Halo Admin " . APP_NAME . " \xF0\x9F\x91\x8B\n";
+        $wa .= "Saya ingin memesan:\n\n";
+        $wa .= $items_text . "\n";
+        $wa .= "\xE2\xAC\x81\xEF\xB8\x8F Total: *Rp " . number_format($total, 0, ',', '.') . "*\n\n";
+        $wa .= "\xF0\x9F\x91\xA4 Nama: " . $name . "\n";
+        $wa .= "\xF0\x9F\x8F\xAB Kelas: " . $kelas . "\n";
+        if ($note) { $wa .= "\xF0\x9F\x93\x8D Catatan: " . $note . "\n"; }
+        $wa .= "\n\xE2\x9C\x85 Mohon dikonfirmasi ya Admin\n";
+        $wa .= "Terima kasih \xF0\x9F\x99\x8F\xE2\x9D\xA4";
+
+        $orderData = [
+            'number' => $orderNumber,
+            'items' => $cart,
+            'total' => $total,
+            'name' => $name,
+            'kelas' => $kelas,
+            'note' => $note,
+            'date' => date('Y-m-d H:i:s'),
+            'status' => 'pending',
+            'wa' => $wa
+        ];
+        $_SESSION['orders'][] = $orderData;
+        $_SESSION['last_order'] = $orderData;
         unset($_SESSION['cart']);
-        header('Location: ' . $waUrl);
+        header('Location: ' . APP_URL . '/customer/checkout/success.php');
         exit;
     }
 }

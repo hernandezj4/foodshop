@@ -19,7 +19,7 @@ if ($product_id > 0) {
             $cart[$product_id]['quantity'] = $newQty;
         } else {
             if ($quantity > $product['stock']) $quantity = $product['stock'];
-            $cart[$product_id] = ['id'=>$product['id'],'name'=>$product['name'],'price'=>$product['price'],'slug'=>$product['slug'],'quantity'=>$quantity];
+            $cart[$product_id] = ['id'=>$product['id'],'name'=>$product['name'],'price'=>$product['price'],'slug'=>$product['slug'],'image'=>$product['image']??'','quantity'=>$quantity];
         }
         $_SESSION['cart'] = $cart;
     }

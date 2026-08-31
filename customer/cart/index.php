@@ -3,11 +3,16 @@ require_once __DIR__ . '/../../includes/customer_layout.php';
 $cart = $_SESSION['cart'] ?? [];
 $total = 0;
 foreach ($cart as $item) { $total += $item['price'] * $item['quantity']; }
-$food = [
-    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=120&h=120&fit=crop',
-    'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=120&h=120&fit=crop',
-    'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=120&h=120&fit=crop',
-];
+
+$defaultImage = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=120&h=120&fit=crop';
+function getCartImage($item) {
+    global $defaultImage;
+    if (!empty($item['image'])) {
+        if (strpos($item['image'], 'http') === 0) return $item['image'];
+        return APP_URL . '/uploads/products/' . $item['image'];
+    }
+    return $defaultImage;
+}
 customerHeader();
 ?>
 <div class="cart-page">
@@ -17,7 +22,7 @@ customerHeader();
     <?php else: ?>
     <?php $i=0; foreach ($cart as $id => $item): ?>
     <div class="cart-item">
-        <img class="cart-item-img" src="<?= $food[$i%count($food)] ?>" alt="" loading="lazy">
+        <img class="cart-item-img" src="<?= getCartImage($item) ?>" alt="" loading="lazy">
         <div class="cart-item-info">
             <div class="cart-item-name"><?= sanitize($item['name']) ?></div>
             <div class="cart-item-price">Rp <?= number_format($item['price'],0,',','.') ?></div>
