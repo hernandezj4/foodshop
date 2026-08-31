@@ -55,8 +55,8 @@ function customerHeader() {
         <a href="<?= APP_URL ?>/customer/orders/" style="display:flex;align-items:center;gap:10px;padding:10px 16px;color:rgba(255,255,255,.5);font-size:13px;border-left:3px solid transparent;text-decoration:none">
             <span class="icon">📋</span> My Orders
         </a>
-        <a href="<?= APP_URL ?>/customer/contact/" style="display:flex;align-items:center;gap:10px;padding:10px 16px;color:rgba(255,255,255,.5);font-size:13px;border-left:3px solid transparent;text-decoration:none">
-            <span class="icon">📍</span> Contact
+        <a href="<?= APP_URL ?>/customer/reviews/" style="display:flex;align-items:center;gap:10px;padding:10px 16px;color:rgba(255,255,255,.5);font-size:13px;border-left:3px solid transparent;text-decoration:none">
+            <span class="icon">⭐</span> Reviews
         </a>
     </div>
 </nav>
@@ -118,9 +118,9 @@ function customerFooter() {
         <span class="icon">📋</span>
         <span class="label">Orders</span>
     </a>
-    <a href="<?= APP_URL ?>/customer/contact/" class="nav-item <?= (basename(dirname($_SERVER['PHP_SELF']))==='contact')?'active':'' ?>">
-        <span class="icon">📍</span>
-        <span class="label">Contact</span>
+    <a href="<?= APP_URL ?>/customer/reviews/" class="nav-item <?= (basename(dirname($_SERVER['PHP_SELF']))==='reviews')?'active':'' ?>">
+        <span class="icon">⭐</span>
+        <span class="label">Reviews</span>
     </a>
 </nav>
 
@@ -137,7 +137,7 @@ function customerFooter() {
                 <a href="<?= APP_URL ?>">Home</a>
                 <a href="<?= APP_URL ?>/customer/products/">Menu</a>
                 <a href="<?= APP_URL ?>/customer/orders/">My Orders</a>
-                <a href="<?= APP_URL ?>/customer/contact/">Contact</a>
+                <a href="<?= APP_URL ?>/customer/reviews/">Reviews</a>
             </div>
             <div class="desk-footer-col">
                 <h4>Categories</h4>
@@ -155,6 +155,7 @@ function customerFooter() {
         </div>
         <div class="desk-footer-bottom">
             &copy; <?= date('Y') ?> <?= APP_NAME ?>. All Rights Reserved.
+            <a href="<?= APP_URL ?>/admin/" style="opacity:.15;font-size:10px;margin-left:8px;text-decoration:none;color:inherit" title="Admin">⚙️</a>
         </div>
     </div>
 </div>
