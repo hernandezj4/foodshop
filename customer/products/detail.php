@@ -15,18 +15,22 @@ $relatedProducts = $related->fetchAll();
 $wishlist = $_SESSION['wishlist'] ?? [];
 $isWished = in_array($product['id'], $wishlist);
 
-$food = [
-    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400&h=400&fit=crop',
-];
+$defaultImage = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&h=500&fit=crop';
+function getProductImage($p) {
+    global $defaultImage;
+    if (!empty($p['image'])) {
+        if (strpos($p['image'], 'http') === 0) return $p['image'];
+        return APP_URL . '/uploads/products/' . $p['image'];
+    }
+    return $defaultImage;
+}
 
 customerHeader();
 ?>
 
 <div class="pd">
     <div style="position:relative">
-        <img class="pd-img" src="<?= $food[0] ?>" alt="<?= sanitize($product['name']) ?>" loading="lazy">
+        <img class="pd-img" src="<?= getProductImage($product) ?>" alt="<?= sanitize($product['name']) ?>" loading="lazy">
         <button class="js-wishlist <?= $isWished?'wish-active':'' ?>" data-id="<?= $product['id'] ?>" type="button" style="position:absolute;top:12px;right:12px;width:36px;height:36px;font-size:18px"></button>
     </div>
     <div class="pd-info">
@@ -72,7 +76,7 @@ customerHeader();
             <a href="<?= APP_URL ?>/customer/products/detail.php?slug=<?= $p['slug'] ?>" class="product-link">
             <div class="product-img-wrap">
                 <button class="js-wishlist <?= in_array($p['id'],$wishlist)?'wish-active':'' ?>" data-id="<?= $p['id'] ?>" type="button"></button>
-                <img class="product-img" src="<?= $food[($i+1)%count($food)] ?>" alt="<?= sanitize($p['name']) ?>" loading="lazy">
+                <img class="product-img" src="<?= getProductImage($p) ?>" alt="<?= sanitize($p['name']) ?>" loading="lazy">
             </div>
             </a>
             <div class="product-body">

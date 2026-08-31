@@ -22,7 +22,7 @@ function customerHeader() {
     <div class="brand">
         <span class="brand-icon">🍔</span>
         <?= APP_NAME ?>
-        <small>It's time to order!</small>
+        <small>Food XI RPL 2</small>
     </div>
     <div class="desk-nav-links">
         <a href="<?= APP_URL ?>" class="<?= ($currentPage==='index'&&$subPage==='public')?'active':'' ?>">
@@ -67,7 +67,7 @@ function customerHeader() {
         <div class="greeting">
             <small>Hello, Food Lover! 👋</small>
             <h2><span><?= APP_NAME ?></span></h2>
-            <p>It's time to order!</p>
+            <p>Food XI RPL 2</p>
         </div>
     </div>
     <div class="header-right">
@@ -111,9 +111,9 @@ function customerFooter() {
         <?php endif; ?>
         <span class="label">Cart</span>
     </a>
-    <a href="<?= APP_URL ?>/customer/products/" class="nav-item">
-        <span class="icon">🏷️</span>
-        <span class="label">Offers</span>
+    <a href="<?= APP_URL ?>/customer/wishlist/" class="nav-item <?= (basename(dirname($_SERVER['PHP_SELF']))==='wishlist')?'active':'' ?>">
+        <span class="icon">❤️</span>
+        <span class="label">Wishlist</span>
     </a>
     <a href="<?= APP_URL ?>/admin/auth/login.php" class="nav-item">
         <span class="icon">👤</span>

@@ -79,22 +79,21 @@ try {
         ('Dessert', 'dessert', 'Pemanis penutup')");
     }
     
-    // Seed products if empty
+    // Add image column to products if missing
+    try { $pdo->exec("ALTER TABLE products ADD COLUMN image VARCHAR(255) DEFAULT NULL AFTER price"); } catch (Exception $e) {}
+
+    // Seed products ONLY if table is empty
     $prodCount = $pdo->query("SELECT COUNT(*) as cnt FROM products")->fetch()['cnt'];
-    if ($prodCount > 0) {
-        // Clear old products
-        $pdo->exec("TRUNCATE products");
+    if ($prodCount == 0) {
+        $pdo->exec("INSERT INTO products (category_id, name, slug, description, price, image, stock, is_active) VALUES 
+        (1, 'Nasi Goreng Spesial', 'nasi-goreng-spesial', 'Nasi goreng dengan bumbu spesial dan topping telur mata sapi', 25000, 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&h=500&fit=crop', 50, 1),
+        (1, 'Ayam Bakar Madu', 'ayam-bakar-madu', 'Ayam bakar dengan baluran madu dan rempah pilihan', 35000, 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=500&h=500&fit=crop', 40, 1),
+        (1, 'Sate Ayam', 'sate-ayam', 'Sate ayam 10 tusuk dengan bumbu kacang yang gurih', 30000, 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500&h=500&fit=crop', 45, 1),
+        (1, 'Rendang Daging', 'rendang-daging', 'Rendang daging sapi dengan santan dan rempah tradisional', 40000, 'https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&h=500&fit=crop', 30, 1),
+        (2, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin yang menyegarkan dengan es batu', 8000, 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&h=500&fit=crop', 100, 1),
+        (2, 'Jus Alpukat', 'jus-alpukat', 'Jus alpukat segar dengan susu kental yang creamy', 15000, 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=500&h=500&fit=crop', 60, 1),
+        (2, 'Es Jeruk', 'es-jeruk', 'Jeruk segar peras langsung dengan es dan gula aren', 12000, 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=500&h=500&fit=crop', 80, 1)");
     }
-    
-    // Insert new products
-    $pdo->exec("INSERT INTO products (category_id, name, slug, description, price, stock, is_active) VALUES 
-    (1, 'Nasi Goreng Spesial', 'nasi-goreng-spesial', 'Nasi goreng dengan bumbu spesial dan topping telur mata sapi', 25000, 50, 1),
-    (1, 'Ayam Bakar Madu', 'ayam-bakar-madu', 'Ayam bakar dengan baluran madu dan rempah pilihan', 35000, 40, 1),
-    (1, 'Sate Ayam', 'sate-ayam', 'Sate ayam 10 tusuk dengan bumbu kacang yang gurih', 30000, 45, 1),
-    (1, 'Rendang Daging', 'rendang-daging', 'Rendang daging sapi dengan santan dan rempah tradisional', 40000, 30, 1),
-    (2, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin yang menyegarkan dengan es batu', 8000, 100, 1),
-    (2, 'Jus Alpukat', 'jus-alpukat', 'Jus alpukat segar dengan susu kental yang creamy', 15000, 60, 1),
-    (2, 'Es Jeruk', 'es-jeruk', 'Jeruk segar peras langsung dengan es dan gula aren', 12000, 80, 1)");
     
     // Seed admin if empty
     $adminCount = $pdo->query("SELECT COUNT(*) as cnt FROM admins")->fetch()['cnt'];
