@@ -93,6 +93,25 @@ try {
         (2, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin yang menyegarkan dengan es batu', 8000, 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&h=500&fit=crop', 100, 1),
         (2, 'Jus Alpukat', 'jus-alpukat', 'Jus alpukat segar dengan susu kental yang creamy', 15000, 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=500&h=500&fit=crop', 60, 1),
         (2, 'Es Jeruk', 'es-jeruk', 'Jeruk segar peras langsung dengan es dan gula aren', 12000, 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=500&h=500&fit=crop', 80, 1)");
+    } else {
+        // Update default image for products that have no image set (only once)
+        $defaultImages = [
+            'nasi-goreng-spesial' => 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&h=500&fit=crop',
+            'ayam-bakar-madu' => 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=500&h=500&fit=crop',
+            'sate-ayam' => 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500&h=500&fit=crop',
+            'rendang-daging' => 'https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&h=500&fit=crop',
+            'es-teh-manis' => 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&h=500&fit=crop',
+            'jus-alpukat' => 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=500&h=500&fit=crop',
+            'es-jeruk' => 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=500&h=500&fit=crop',
+        ];
+        $nullProducts = $pdo->query("SELECT id, slug FROM products WHERE image IS NULL OR image = ''")->fetchAll();
+        if (!empty($nullProducts)) {
+            $stmt = $pdo->prepare("UPDATE products SET image = ? WHERE id = ?");
+            foreach ($nullProducts as $np) {
+                $img = $defaultImages[$np['slug']] ?? 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&h=500&fit=crop';
+                $stmt->execute([$img, $np['id']]);
+            }
+        }
     }
     
     // Seed admin if empty
