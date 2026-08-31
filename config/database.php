@@ -114,6 +114,33 @@ try {
         }
     }
     
+    // Create reviews table if not exists
+    $pdo->exec("CREATE TABLE IF NOT EXISTS reviews (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        product_id INT NOT NULL,
+        customer_name VARCHAR(100) NOT NULL,
+        kelas VARCHAR(50) NOT NULL,
+        rating INT NOT NULL DEFAULT 5,
+        review_text TEXT NOT NULL,
+        is_active TINYINT(1) DEFAULT 1,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (product_id) REFERENCES products(id)
+    )");
+
+    // Seed reviews if empty
+    $revCount = $pdo->query("SELECT COUNT(*) as cnt FROM reviews")->fetch()['cnt'];
+    if ($revCount == 0) {
+        $pdo->exec("INSERT INTO reviews (product_id, customer_name, kelas, rating, review_text) VALUES
+        (1, 'Andi Pratama', 'XII RPL 1', 5, 'Nasi gorengnya enak banget! Bumbu meresap dan porsi besar. Pasti order lagi next time'),
+        (2, 'Sari Dewi', 'XI TKJ 2', 5, 'Ayam bakar madunya juara! Manisnya pas, dagingnya empuk. Sangat recommended'),
+        (5, 'Budi Santoso', 'XII RPL 2', 4, 'Es teh manisnya segar banget, cocok buat cuaca panas. Harga juga murah meriah'),
+        (3, 'Rina Melati', 'XI RPL 1', 5, 'Sate ayamnya gurih, bumbu kacangnya pas. 10 tusuk puas banget makan nya'),
+        (4, 'Dimas Putra', 'XII TKJ 1', 5, 'Rendang dagingnya otentik! Rasanya seperti masakan rumah, santan dan rempahnya kerasa banget'),
+        (6, 'Maya Putri', 'XI RPL 2', 4, 'Jus alpukatnya creamy dan segar. Susu kental manisnya balance, ga terlalu manis'),
+        (7, 'Fajar Ramadhan', 'XII RPL 1', 5, 'Es jeruknya fresh banget! Jeruknya berasa asli, ga kayak yang pakai sirup. Mantap!'),
+        (1, 'Aulia Rahma', 'XI TKJ 1', 5, 'Pengiriman cepat, makanan masih hangat. Packaging juga rapi. FoodShop emang beda kelas!')");
+    }
+
     // Seed admin if empty
     $adminCount = $pdo->query("SELECT COUNT(*) as cnt FROM admins")->fetch()['cnt'];
     if ($adminCount == 0) {

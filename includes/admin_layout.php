@@ -21,6 +21,7 @@ function adminHeader() {
             <li><a href="<?= APP_URL ?>/admin/products/" class="<?= $sub==='products'?'active':'' ?>">📦 Products</a></li>
             <li><a href="<?= APP_URL ?>/admin/categories/" class="<?= $sub==='categories'?'active':'' ?>">🏷️ Categories</a></li>
             <li><a href="<?= APP_URL ?>/admin/orders/" class="<?= $sub==='orders'?'active':'' ?>">📋 Orders</a></li>
+            <li><a href="<?= APP_URL ?>/admin/reviews/" class="<?= $sub==='reviews'?'active':'' ?>">⭐ Reviews</a></li>
             <li><a href="<?= APP_URL ?>/admin/auth/logout.php" class="sidebar-logout">🚪 Logout</a></li>
         </ul>
     </aside>
