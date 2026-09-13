@@ -29,7 +29,6 @@ function customerHeader() {
         <div class="brand-logo"><?= svgIcon('logo', 32) ?></div>
         <div class="brand-text">
             <?= APP_NAME ?>
-            <small>Food XI RPL 2</small>
         </div>
     </div>
     <div class="desk-nav-links">
@@ -76,9 +75,7 @@ function customerHeader() {
 <header class="header">
     <div class="header-left">
         <div class="greeting">
-            <small>Selamat datang!</small>
             <h2><span><?= APP_NAME ?></span></h2>
-            <p>Food XI RPL 2</p>
         </div>
     </div>
     <div class="header-right">
