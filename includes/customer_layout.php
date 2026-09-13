@@ -157,8 +157,8 @@ function customerFooter() {
             <div class="desk-footer-col">
                 <h4>Contact</h4>
                 <p>Jl. Raya No. 123, Jakarta</p>
-                <p>+62 812 3456 7890</p>
-                <p>hello@<?= strtolower(APP_NAME) ?>.com</p>
+                <p>+62 857 8010 8474</p>
+                <p>hello@thamsisfood.com</p>
             </div>
         </div>
         <div class="desk-footer-bottom">

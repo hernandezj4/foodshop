@@ -9,7 +9,7 @@ customerHeader();
     <!-- Store Info -->
     <div style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:14px;text-align:center">
         <div style="font-size:3rem;margin-bottom:8px">🍔</div>
-        <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:4px">FoodShop</h3>
+        <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:4px">Thamsis Food</h3>
         <p style="font-size:12px;color:var(--gray);margin-bottom:16px">Delicious food delivered fresh to your doorstep</p>
         
         <div style="text-align:left;max-width:320px;margin:0 auto">
@@ -31,7 +31,7 @@ customerHeader();
                 <span style="font-size:1.2rem">📧</span>
                 <div>
                     <div style="font-size:11px;color:var(--gray)">Email</div>
-                    <div style="font-size:13px;font-weight:500">hello@foodshop.com</div>
+                    <div style="font-size:13px;font-weight:500">hello@thamsisfood.com</div>
                 </div>
             </div>
             <div style="display:flex;align-items:center;gap:12px;padding:10px 0">
