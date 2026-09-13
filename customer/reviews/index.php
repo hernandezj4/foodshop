@@ -8,13 +8,13 @@ $avgRating = $totalReviews > 0 ? number_format(array_sum(array_column($reviews, 
 ?>
 
 <div class="section">
-    <h2 class="page-title" style="padding:0 0 4px">⭐ Customer Reviews</h2>
+    <h2 class="page-title" style="padding:0 0 4px">Customer Reviews</h2>
     <p style="font-size:12px;color:var(--gray);margin-bottom:16px"><?= $totalReviews ?> reviews · Rata-rata <?= $avgRating ?>/5</p>
 
     <!-- Rating Summary -->
     <div style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:16px;text-align:center">
         <div style="font-size:2.5rem;font-weight:800;color:var(--dark)"><?= $avgRating ?></div>
-        <div style="font-size:1.2rem;margin:4px 0">⭐⭐⭐⭐⭐</div>
+        <div style="display:flex;justify-content:center;gap:4px;margin:4px 0;color:#f5a623"><?= str_repeat(svgIcon('star', 20), 5) ?></div>
         <div style="font-size:12px;color:var(--gray)">Berdasarkan <?= $totalReviews ?> reviews</div>
     </div>
 
@@ -30,7 +30,7 @@ $avgRating = $totalReviews > 0 ? number_format(array_sum(array_column($reviews, 
                 </div>
             </div>
             <div style="text-align:right">
-                <div style="font-size:12px;color:#f5a623"><?= str_repeat('★', $r['rating']) ?></div>
+                <div style="display:flex;gap:2px;color:#f5a623"><?= str_repeat(svgIcon('star', 14), $r['rating']) ?></div>
                 <div style="font-size:10px;color:var(--gray)"><?= date('d M Y', strtotime($r['created_at'])) ?></div>
             </div>
         </div>
@@ -41,7 +41,7 @@ $avgRating = $totalReviews > 0 ? number_format(array_sum(array_column($reviews, 
 
     <?php if ($totalReviews === 0): ?>
     <div style="text-align:center;padding:40px;color:var(--gray)">
-        <div style="font-size:2rem;margin-bottom:8px">⭐</div>
+        <div style="margin-bottom:8px;color:var(--gray-light)"><?= svgIcon('star', 40) ?></div>
         <p>Belum ada reviews</p>
     </div>
     <?php endif; ?>

@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 customerHeader();
 ?>
 <div class="ck">
-    <div class="page-title">📦 Checkout</div>
+    <div class="page-title">Checkout</div>
     <?php if (!empty($errors['general'])): ?><div style="background:var(--red-light);padding:10px;border-radius:10px;margin-bottom:14px;color:var(--red);font-size:12px;text-align:center"><?= $errors['general'] ?></div><?php endif; ?>
     <form method="POST">
         <div class="ck-card">
@@ -68,7 +68,7 @@ customerHeader();
             <?php endforeach; ?>
             <div class="cart-row cart-total" style="margin-top:8px"><span style="font-weight:700">Total</span><span class="tv">Rp <?= number_format($total,0,',','.') ?></span></div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block btn-round" style="padding:13px">💬 Bayar via WhatsApp</button>
+        <button type="submit" class="btn btn-primary btn-block btn-round" style="padding:13px"><?= svgIcon('whatsapp', 16) ?> Bayar via WhatsApp</button>
     </form>
 </div>
 

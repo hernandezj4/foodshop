@@ -73,7 +73,7 @@ customerHeader();
     </div>
 
     <?php if (empty($products)): ?>
-    <div class="empty-state"><div class="icon">🔍</div><h3>No food found</h3><p>Try different keywords</p></div>
+    <div class="empty-state"><div class="icon"><?= svgIcon('search', 48) ?></div><h3>No food found</h3><p>Try different keywords</p></div>
     <?php else: ?>
     <div class="product-grid">
         <?php foreach ($products as $i => $p): ?>
@@ -99,7 +99,7 @@ customerHeader();
                     <form method="POST" action="<?= APP_URL ?>/customer/cart/add.php" style="margin:0">
                         <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="product-add js-add-cart" title="Add to Cart">+</button>
+                        <button type="submit" class="product-add js-add-cart" title="Add to Cart"><?= svgIcon('plus', 16) ?></button>
                     </form>
                     <?php endif; ?>
                 </div>
@@ -117,12 +117,12 @@ customerHeader();
     <?php foreach ($sortLabels as $key => $label): ?>
     <a href="?category=<?= $category ?>&sort=<?= $key ?>" class="filter-option <?= $sort===$key?'active':'' ?>">
         <span><?= $label ?></span>
-        <span class="check">✓</span>
+        <span class="check"><?= svgIcon('check', 16) ?></span>
     </a>
     <?php endforeach; ?>
 </div>
 
 <!-- Back to Top -->
-<button class="back-to-top">↑</button>
+<button class="back-to-top"><?= svgIcon('arrow-right', 18) ?></button>
 
 <?php customerFooter(); ?>

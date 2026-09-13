@@ -16,9 +16,9 @@ function getCartImage($item) {
 customerHeader();
 ?>
 <div class="cart-page">
-    <div class="page-title">🛒 Your Cart</div>
+    <div class="page-title">Your Cart</div>
     <?php if (empty($cart)): ?>
-    <div class="empty-state"><div class="icon">🛒</div><h3>Cart is empty</h3><p>Add some delicious food!</p><a href="<?= APP_URL ?>/customer/products/" class="btn btn-primary btn-round btn-sm">Browse Menu</a></div>
+    <div class="empty-state"><div class="icon"><?= svgIcon('cart', 48) ?></div><h3>Cart is empty</h3><p>Add some delicious food!</p><a href="<?= APP_URL ?>/customer/products/" class="btn btn-primary btn-round btn-sm">Browse Menu</a></div>
     <?php else: ?>
     <?php $i=0; foreach ($cart as $id => $item): ?>
     <div class="cart-item">
@@ -34,7 +34,7 @@ customerHeader();
         </div>
         <div style="text-align:right">
             <div class="cart-item-price" style="margin-bottom:4px">Rp <?= number_format($item['price']*$item['quantity'],0,',','.') ?></div>
-            <a href="<?= APP_URL ?>/customer/cart/update.php?id=<?= $id ?>&action=remove" class="cart-remove js-remove-cart" data-name="<?= sanitize($item['name']) ?>">✕</a>
+            <a href="<?= APP_URL ?>/customer/cart/update.php?id=<?= $id ?>&action=remove" class="cart-remove js-remove-cart" data-name="<?= sanitize($item['name']) ?>"><?= svgIcon('trash', 16) ?></a>
         </div>
     </div>
     <?php $i++; endforeach; ?>
@@ -43,7 +43,7 @@ customerHeader();
         <div class="cart-row"><span>Subtotal</span><span>Rp <?= number_format($total,0,',','.') ?></span></div>
         <div class="cart-row"><span>Delivery</span><span style="color:#38a169;font-weight:600">Free</span></div>
         <div class="cart-row cart-total"><span style="font-weight:700">Total</span><span class="tv">Rp <?= number_format($total,0,',','.') ?></span></div>
-        <a href="<?= APP_URL ?>/customer/checkout/" class="btn btn-primary btn-block btn-round" style="margin-top:14px;padding:13px">Checkout →</a>
+        <a href="<?= APP_URL ?>/customer/checkout/" class="btn btn-primary btn-block btn-round" style="margin-top:14px;padding:13px">Checkout <?= svgIcon('arrow-right', 16) ?></a>
     </div>
     <?php endif; ?>
 </div>

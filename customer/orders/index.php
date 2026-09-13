@@ -5,11 +5,11 @@ customerHeader();
 ?>
 
 <div class="section">
-    <h2 class="page-title" style="padding:0 0 14px">📋 My Orders</h2>
+    <h2 class="page-title" style="padding:0 0 14px">My Orders</h2>
 
     <?php if (empty($orders)): ?>
     <div class="empty-state">
-        <div class="icon">📋</div>
+        <div class="icon"><?= svgIcon('order', 48) ?></div>
         <h3>Belum ada pesanan</h3>
         <p>Pesan makanan favoritmu sekarang!</p>
         <a href="<?= APP_URL ?>/customer/products/" class="btn btn-primary btn-round">Browse Menu</a>

@@ -5,7 +5,7 @@ if (!$order) { header('Location: '.APP_URL); exit; }
 customerHeader();
 ?>
 <div class="sp">
-    <div class="sp-icon">✓</div>
+    <div class="sp-icon"><?= svgIcon('check', 32) ?></div>
     <h2>Pesanan Terkirim!</h2>
     <p>Terima kasih, pesanan kamu sudah dikirim ke admin via WhatsApp</p>
     <div class="sp-card">
@@ -14,8 +14,8 @@ customerHeader();
         <div class="lbl">Total</div>
         <div style="font-size:1.1rem;font-weight:700;color:var(--red)">Rp <?= number_format($order['total'],0,',','.') ?></div>
     </div>
-    <p style="font-size:12px;color:var(--gray);margin:14px 0">Admin akan segera mengkonfirmasi pesanan kamu 😊</p>
-    <a href="<?= APP_URL ?>" class="btn btn-primary btn-round">← Kembali ke Beranda</a>
+    <p style="font-size:12px;color:var(--gray);margin:14px 0">Admin akan segera mengkonfirmasi pesanan kamu</p>
+    <a href="<?= APP_URL ?>" class="btn btn-primary btn-round"><?= svgIcon('arrow-left', 16) ?> Kembali ke Beranda</a>
 </div>
 
 <?php customerFooter(); ?>

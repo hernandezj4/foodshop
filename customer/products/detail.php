@@ -59,7 +59,7 @@ customerHeader();
                 <input type="hidden" name="quantity" id="qty-input" value="1">
                 <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
             </div>
-            <button type="submit" class="btn btn-primary btn-block btn-round js-add-cart" style="padding:13px">🛒 Add to Cart</button>
+            <button type="submit" class="btn btn-primary btn-block btn-round js-add-cart" style="padding:13px"><?= svgIcon('cart', 16) ?> Add to Cart</button>
         </form>
         <?php else: ?>
         <button class="btn btn-secondary btn-block btn-round" disabled style="padding:13px;opacity:.5">Out of Stock</button>
@@ -87,7 +87,7 @@ customerHeader();
                     <form method="POST" action="<?= APP_URL ?>/customer/cart/add.php" style="margin:0">
                         <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="product-add js-add-cart" title="Add to Cart">+</button>
+                        <button type="submit" class="product-add js-add-cart" title="Add to Cart"><?= svgIcon('plus', 16) ?></button>
                     </form>
                     <?php endif; ?>
                 </div>

@@ -101,7 +101,7 @@ customerHeader();
                     <form method="POST" action="<?= APP_URL ?>/customer/cart/add.php" style="margin:0">
                         <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="product-add js-add-cart" title="Add to Cart">+</button>
+                        <button type="submit" class="product-add js-add-cart" title="Add to Cart"><?= svgIcon('plus', 16) ?></button>
                     </form>
                     <?php endif; ?>
                 </div>
@@ -122,7 +122,7 @@ customerHeader();
     </div>
     <div class="promo-discount">
         <small>FREE</small>
-        <span style="font-size:1rem">🚚</span>
+        <span style="font-size:1rem"><?= svgIcon('truck', 24) ?></span>
         <small>DELIVERY</small>
     </div>
 </div>
@@ -156,7 +156,7 @@ customerHeader();
                     <form method="POST" action="<?= APP_URL ?>/customer/cart/add.php" style="margin:0">
                         <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="product-add js-add-cart" title="Add to Cart">+</button>
+                        <button type="submit" class="product-add js-add-cart" title="Add to Cart"><?= svgIcon('plus', 16) ?></button>
                     </form>
                     <?php endif; ?>
                 </div>
