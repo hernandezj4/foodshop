@@ -114,31 +114,28 @@ try {
         }
     }
     
-    // Create reviews table if not exists
-    $pdo->exec("CREATE TABLE IF NOT EXISTS reviews (
+    // Create combos table if not exists
+    $pdo->exec("CREATE TABLE IF NOT EXISTS combos (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        product_id INT NOT NULL,
-        customer_name VARCHAR(100) NOT NULL,
-        kelas VARCHAR(50) NOT NULL,
-        rating INT NOT NULL DEFAULT 5,
-        review_text TEXT NOT NULL,
+        name VARCHAR(200) NOT NULL,
+        description TEXT,
+        price INT NOT NULL,
+        image VARCHAR(255),
+        item_details TEXT,
         is_active TINYINT(1) DEFAULT 1,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (product_id) REFERENCES products(id)
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )");
 
-    // Seed reviews if empty
-    $revCount = $pdo->query("SELECT COUNT(*) as cnt FROM reviews")->fetch()['cnt'];
-    if ($revCount == 0) {
-        $pdo->exec("INSERT INTO reviews (product_id, customer_name, kelas, rating, review_text) VALUES
-        (1, 'Andi Pratama', 'XII RPL 1', 5, 'Nasi gorengnya enak banget! Bumbu meresap dan porsi besar. Pasti order lagi next time'),
-        (2, 'Sari Dewi', 'XI TKJ 2', 5, 'Ayam bakar madunya juara! Manisnya pas, dagingnya empuk. Sangat recommended'),
-        (5, 'Budi Santoso', 'XII RPL 2', 4, 'Es teh manisnya segar banget, cocok buat cuaca panas. Harga juga murah meriah'),
-        (3, 'Rina Melati', 'XI RPL 1', 5, 'Sate ayamnya gurih, bumbu kacangnya pas. 10 tusuk puas banget makan nya'),
-        (4, 'Dimas Putra', 'XII TKJ 1', 5, 'Rendang dagingnya otentik! Rasanya seperti masakan rumah, santan dan rempahnya kerasa banget'),
-        (6, 'Maya Putri', 'XI RPL 2', 4, 'Jus alpukatnya creamy dan segar. Susu kental manisnya balance, ga terlalu manis'),
-        (7, 'Fajar Ramadhan', 'XII RPL 1', 5, 'Es jeruknya fresh banget! Jeruknya berasa asli, ga kayak yang pakai sirup. Mantap!'),
-        (1, 'Aulia Rahma', 'XI TKJ 1', 5, 'Pengiriman cepat, makanan masih hangat. Packaging juga rapi. FoodShop emang beda kelas!')");
+    // Seed combos if empty
+    $comboCount = $pdo->query("SELECT COUNT(*) as cnt FROM combos")->fetch()['cnt'];
+    if ($comboCount == 0) {
+        $pdo->exec("INSERT INTO combos (name, description, price, image, item_details) VALUES
+        ('Paket Hemat 1', 'Nasi Goreng Spesial + Es Teh Manis. Cocok buat makan siang!', 30000, 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&h=500&fit=crop', 'Nasi Goreng Spesial x1 + Es Teh Manis x1'),
+        ('Paket Hemat 2', 'Ayam Bakar Madu + Jus Alpukat. Porsi spesial buat kamu!', 48000, 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=500&h=500&fit=crop', 'Ayam Bakar Madu x1 + Jus Alpukat x1'),
+        ('Paket Keluarga', 'Rendang Daging + Sate Ayam + Nasi Goreng + 3 Minuman. Sharing bareng keluarga!', 120000, 'https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500&h=500&fit=crop', 'Rendang Daging x1 + Sate Ayam x1 + Nasi Goreng x1 + Es Teh Manis x2 + Es Jeruk x1'),
+        ('Paket Mahasiswa', 'Sate Ayam + Es Teh Manis. Hemat buat kantong mahasiswa!', 35000, 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500&h=500&fit=crop', 'Sate Ayam x1 + Es Teh Manis x1'),
+        ('Paket Segar', 'Es Jeruk + Jus Alpukat. Minuman segar buat cuaca panas!', 25000, 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=500&h=500&fit=crop', 'Es Jeruk x1 + Jus Alpukat x1'),
+        ('Paket Rame-rame', '4 Nasi Goreng + 4 Es Teh Manis. Buat rame-rame!', 120000, 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&h=500&fit=crop', 'Nasi Goreng Spesial x4 + Es Teh Manis x4')");
     }
 
     // Seed admin if empty

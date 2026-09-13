@@ -63,8 +63,8 @@ function customerHeader() {
         <a href="<?= APP_URL ?>/customer/orders/">
             <span class="icon"><?= svgIcon('order', 18) ?></span> My Orders
         </a>
-        <a href="<?= APP_URL ?>/customer/reviews/">
-            <span class="icon"><?= svgIcon('star', 18) ?></span> Reviews
+        <a href="<?= APP_URL ?>/customer/combos/">
+            <span class="icon"><?= svgIcon('combo', 18) ?></span> Combo
         </a>
     </div>
 </nav>
@@ -126,9 +126,9 @@ function customerFooter() {
         <span class="icon"><?= svgIcon('order', 22) ?></span>
         <span class="label">Orders</span>
     </a>
-    <a href="<?= APP_URL ?>/customer/reviews/" class="nav-item <?= (basename(dirname($_SERVER['PHP_SELF']))==='reviews')?'active':'' ?>">
-        <span class="icon"><?= svgIcon('star', 22) ?></span>
-        <span class="label">Reviews</span>
+    <a href="<?= APP_URL ?>/customer/combos/" class="nav-item <?= (basename(dirname($_SERVER['PHP_SELF']))==='combos')?'active':'' ?>">
+        <span class="icon"><?= svgIcon('combo', 22) ?></span>
+        <span class="label">Combo</span>
     </a>
 </nav>
 
@@ -148,7 +148,7 @@ function customerFooter() {
                 <a href="<?= APP_URL ?>">Home</a>
                 <a href="<?= APP_URL ?>/customer/products/">Menu</a>
                 <a href="<?= APP_URL ?>/customer/orders/">My Orders</a>
-                <a href="<?= APP_URL ?>/customer/reviews/">Reviews</a>
+                <a href="<?= APP_URL ?>/customer/combos/">Combo</a>
             </div>
             <div class="desk-footer-col">
                 <h4>Categories</h4>
