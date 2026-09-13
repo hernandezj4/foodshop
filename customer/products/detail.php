@@ -37,7 +37,7 @@ customerHeader();
         <span class="cat"><?= $product['category_name'] ?></span>
         <h1><?= sanitize($product['name']) ?></h1>
         <div class="product-rating" style="margin:6px 0">
-            <span class="star">★</span>
+            <span class="star"><?= svgIcon('star',14) ?></span>
             <span>4.<?= rand(5,9) ?></span>
             <span class="count">(<?= rand(1,12) ?>K+ reviews)</span>
         </div>

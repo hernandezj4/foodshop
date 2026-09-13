@@ -6,7 +6,7 @@ $pendingOrders = $pdo->query("SELECT COUNT(*) FROM orders WHERE status='pending'
 $totalRevenue = $pdo->query("SELECT COALESCE(SUM(total_amount),0) FROM orders WHERE status!='cancelled'")->fetchColumn();
 adminHeader();
 ?>
-<div class="page-header"><h1>📊 Dashboard</h1><span style="font-size:12px;color:var(--gray)">Welcome, <?= sanitize($_SESSION['admin_name']??'Admin') ?></span></div>
+<div class="page-header"><h1><?= svgIcon('chart',24) ?> Dashboard</h1><span style="font-size:12px;color:var(--gray)">Welcome, <?= sanitize($_SESSION['admin_name']??'Admin') ?></span></div>
 <div class="admin-stats">
     <div class="stat-card s-primary"><h3>Products</h3><div class="sv"><?= $totalProducts ?></div></div>
     <div class="stat-card s-success"><h3>Orders</h3><div class="sv"><?= $totalOrders ?></div></div>

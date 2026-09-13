@@ -13,15 +13,16 @@ function adminHeader() {
     <link rel="stylesheet" href="<?= APP_URL ?>/css/style.css">
 </head>
 <body>
+<?= file_get_contents(__DIR__ . '/../public/img/icons.svg') ?>
 <div class="admin-wrapper">
     <aside class="sidebar">
         <div class="sidebar-brand"><?= APP_NAME ?></div>
         <ul class="sidebar-menu">
-            <li><a href="<?= APP_URL ?>/admin/dashboard/" class="<?= $sub==='dashboard'?'active':'' ?>">📊 Dashboard</a></li>
-            <li><a href="<?= APP_URL ?>/admin/products/" class="<?= $sub==='products'?'active':'' ?>">📦 Products</a></li>
-            <li><a href="<?= APP_URL ?>/admin/categories/" class="<?= $sub==='categories'?'active':'' ?>">🏷️ Categories</a></li>
-            <li><a href="<?= APP_URL ?>/admin/orders/" class="<?= $sub==='orders'?'active':'' ?>">📋 Orders</a></li>
-            <li><a href="<?= APP_URL ?>/admin/auth/logout.php" class="sidebar-logout">🚪 Logout</a></li>
+            <li><a href="<?= APP_URL ?>/admin/dashboard/" class="<?= $sub==='dashboard'?'active':'' ?>"><?= svgIcon('chart',18) ?> Dashboard</a></li>
+            <li><a href="<?= APP_URL ?>/admin/products/" class="<?= $sub==='products'?'active':'' ?>"><?= svgIcon('box',18) ?> Products</a></li>
+            <li><a href="<?= APP_URL ?>/admin/categories/" class="<?= $sub==='categories'?'active':'' ?>"><?= svgIcon('tag',18) ?> Categories</a></li>
+            <li><a href="<?= APP_URL ?>/admin/orders/" class="<?= $sub==='orders'?'active':'' ?>"><?= svgIcon('order',18) ?> Orders</a></li>
+            <li><a href="<?= APP_URL ?>/admin/auth/logout.php" class="sidebar-logout"><?= svgIcon('logout',18) ?> Logout</a></li>
         </ul>
     </aside>
     <main class="admin-content">

@@ -17,7 +17,7 @@ adminHeader();
 ?>
 
 <div class="page-header">
-    <h1>🏷️ Categories</h1>
+    <h1><?= svgIcon('tag',24) ?> Categories</h1>
     <a href="<?= APP_URL ?>/admin/categories/create.php" class="btn btn-primary btn-sm">+ Add Category</a>
 </div>
 

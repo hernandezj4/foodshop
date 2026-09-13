@@ -1,10 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
 
-function svgIcon($name, $size = 20) {
-    return '<svg width="'.$size.'" height="'.$size.'" style="display:inline-block;vertical-align:middle"><use href="#icon-'.$name.'"/></svg>';
-}
-
 function customerHeader() {
     $cart = $_SESSION['cart'] ?? [];
     $cartCount = array_sum(array_column($cart, 'quantity'));

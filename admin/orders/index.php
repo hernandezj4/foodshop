@@ -8,7 +8,7 @@ $stmt=$pdo->prepare($sql);$stmt->execute($p);$orders=$stmt->fetchAll();
 $statuses=['pending','confirmed','processing','shipped','delivered','cancelled'];
 adminHeader();
 ?>
-<div class="page-header"><h1>📋 Orders</h1></div>
+<div class="page-header"><h1><?= svgIcon('order',24) ?> Orders</h1></div>
 <div class="filter-scroll">
 <a href="<?= APP_URL ?>/admin/orders/" class="filter-btn-pill <?= !$status?'active':'' ?>">All</a>
 <?php foreach($statuses as $s): ?><a href="?status=<?= $s ?>" class="filter-btn-pill <?= $status===$s?'active':'' ?>"><?= ucfirst($s) ?></a><?php endforeach; ?>

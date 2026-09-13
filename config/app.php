@@ -14,3 +14,7 @@ define('APP_NAME', 'Thamsis Food');
 define('APP_URL', rtrim($appUrl, '/'));
 define('UPLOAD_PATH', __DIR__ . '/../public/uploads/');
 define('WA_NUMBER', '6285780108474');
+
+function svgIcon($name, $size = 20) {
+    return '<svg width="'.$size.'" height="'.$size.'" style="display:inline-block;vertical-align:middle"><use href="#icon-'.$name.'"/></svg>';
+}

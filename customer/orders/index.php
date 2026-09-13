@@ -36,7 +36,7 @@ customerHeader();
         </div>
         <div style="border-top:1px solid var(--gray-light);padding-top:8px;margin-top:6px;display:flex;justify-content:space-between;align-items:center">
             <div style="font-size:11px;color:var(--gray)">
-                👤 <?= sanitize($order['name']) ?> · 🏫 <?= sanitize($order['kelas']) ?>
+                <?= svgIcon('user',14) ?> <?= sanitize($order['name']) ?> · <?= svgIcon('school',14) ?> <?= sanitize($order['kelas']) ?>
             </div>
             <div style="font-weight:800;color:var(--red)">Rp <?= number_format($order['total'],0,',','.') ?></div>
         </div>

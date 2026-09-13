@@ -24,11 +24,11 @@ customerHeader();
 ?>
 
 <div class="section">
-    <h2 class="page-title" style="padding:0 0 14px">❤️ My Wishlist</h2>
+    <h2 class="page-title" style="padding:0 0 14px"><?= svgIcon('heart',22) ?> My Wishlist</h2>
 
     <?php if (empty($products)): ?>
     <div class="empty-state">
-        <div class="icon">❤️</div>
+        <div class="icon"><?= svgIcon('heart',48) ?></div>
         <h3>Belum ada wishlist</h3>
         <p>Tandai produk favoritmu dengan tombol hati</p>
         <a href="<?= APP_URL ?>/customer/products/" class="btn btn-primary btn-round">Browse Menu</a>
@@ -52,7 +52,7 @@ customerHeader();
                     <form method="POST" action="<?= APP_URL ?>/customer/cart/add.php" style="margin:0">
                         <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
                         <input type="hidden" name="quantity" value="1">
-                        <button type="submit" class="product-add js-add-cart" title="Add to Cart">+</button>
+                        <button type="submit" class="product-add js-add-cart" title="Add to Cart"><?= svgIcon('plus',16) ?></button>
                     </form>
                     <?php endif; ?>
                 </div>

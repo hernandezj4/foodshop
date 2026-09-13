@@ -91,7 +91,7 @@ customerHeader();
                 <div class="product-name"><?= sanitize($p['name']) ?></div>
                 <div class="product-desc"><?= sanitize(substr($p['description'],0,50)) ?></div>
                 <div class="product-rating">
-                    <span class="star">★</span>
+                    <span class="star"><?= svgIcon('star',14) ?></span>
                     <span>4.<?= rand(5,9) ?></span>
                     <span class="count">(<?= rand(1,12) ?>K+)</span>
                 </div>
@@ -146,7 +146,7 @@ customerHeader();
                 <div class="product-name"><?= sanitize($p['name']) ?></div>
                 <div class="product-desc"><?= sanitize(substr($p['description'],0,50)) ?></div>
                 <div class="product-rating">
-                    <span class="star">★</span>
+                    <span class="star"><?= svgIcon('star',14) ?></span>
                     <span>4.<?= rand(5,9) ?></span>
                     <span class="count">(<?= rand(1,8) ?>K+)</span>
                 </div>

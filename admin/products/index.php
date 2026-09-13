@@ -19,7 +19,7 @@ function adminProductImage($p) {
 }
 adminHeader();
 ?>
-<div class="page-header"><h1>📦 Products (<?= count($products) ?>)</h1><a href="<?= APP_URL ?>/admin/products/create.php" class="btn btn-primary btn-sm btn-round">+ Add Product</a></div>
+<div class="page-header"><h1><?= svgIcon('box',24) ?> Products (<?= count($products) ?>)</h1><a href="<?= APP_URL ?>/admin/products/create.php" class="btn btn-primary btn-sm btn-round">+ Add Product</a></div>
 <?php if ($success): ?><div class="toast toast-success" style="position:static;margin-bottom:14px"><?= $success ?></div><?php endif; ?>
 
 <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">
